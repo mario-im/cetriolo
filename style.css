@@ -1,90 +1,174 @@
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  margin: 0;
-  background-color: #f0f0f0;
-  font-family: Arial, sans-serif;
-  text-align: center;
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
 #main-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 16px;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    position: relative;
 }
 
 #cucumber {
-  cursor: pointer;
-  transition: transform 0.3s;
-  width: 200px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 200px;
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 10;
+}
+
+#cucumber:active {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
 #message {
-  font-size: 24px;
-  opacity: 0;
-  transition: opacity 0.3s;
-  margin-top: 20px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 24px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    color: #333;
 }
 
-#countdown {
-  opacity: 1;
-  margin-top: 10px;
-  width: 80%;
-  display: none;
+.counter {
+    text-align: center;
+    display: none;
+    position: absolute;
+   /* top: 65%; /* Adjusted to align with the countdown bar */
+    bottom: 13%;
+    width: 100%;
+    z-index: 5;
+}
+
+.counter.hide {
+    transform: scale(0);
+    animation: hide .2s ease-out;
+}
+
+@keyframes hide {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0);
+    }
+}
+
+.nums {
+    color: #4CAF50; /* Verde cetriolo */
+    position: relative;
+    font-size: calc(60px / 1.618); /* Font ridotto secondo la sezione aurea */
+    font-weight: bold; /* Font bold */
+    overflow: hidden;
+    width: 100%;
+    height: calc(60px / 1.618); /* Height reduced accordingly */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nums span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(120deg);
+    transform-origin: bottom center;
+}
+
+.nums span.in {
+    transform: translate(-50%, -50%) rotate(0deg);
+    animation: goIn .5s ease-in-out;
+}
+
+.nums span.out {
+    animation: goOut .5s ease-in-out;
+}
+
+@keyframes goIn {
+    0% {
+        transform: translate(-50%, -50%) rotate(120deg);
+    }
+    30% {
+        transform: translate(-50%, -50%) rotate(-20deg);
+    }
+
+    60% {
+        transform: translate(-50%, -50%) rotate(10deg);
+    }
+
+    90%, 100% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+}
+
+@keyframes goOut {
+    0%, 30% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    60% {
+        transform: translate(-50%, -50%) rotate(20deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(-120deg);
+    }
 }
 
 .countdown-bar {
-  width: 100%;
-  height: 10px;
-  background-color: #ddd;
-  border-radius: 5px;
-  overflow: hidden;
-  margin-top: 20px;
+    width: 50%;
+    height: 10px;
+    background-color: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 100px; /* Adjusted to position below the numbers */
+    position: absolute;
+   /* top: 70%; */
+    bottom: 9%;
+    z-index: 5;
+    display: none; /* Nascondi la barra inizialmente */
 }
 
 .countdown-fill {
-  height: 100%;
-  background-color: #4CAF50;
-  width: 100%;
-  border-radius: 5px;
-  transition: width 1s linear;
+    height: 100%;
+    background: linear-gradient(to right, #4CAF50, #81C784);
+    width: 100%;
+    border-radius: 5px;
+    transition: width 1s linear;
 }
 
-#overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 48px;
-  transition: all 0.3s ease;
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    letter-spacing: 1px;
 }
 
-#overlay-text {
-  animation: zoomIn 1s ease-in-out;
+footer I {
+    /* color: red; */
+  color: #4CAF50; /*verde cetriolo*/
 }
 
-.hidden {
-  display: none;
-}
-
-@keyframes zoomIn {
-  0% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
-  }
+footer a {
+    /*color: #3C97BF;*/
+    color: #4CAF50; /* verde cetriolo*/
+    text-decoration: none;
 }
