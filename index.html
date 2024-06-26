@@ -11,7 +11,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="./style.css">
 </head>
-<body>
+  <body onload="checkFirstVisit()">
+  <div id="overlay">
+    <i id="click-icon" class="fas fa-hand-pointer"></i>
+    <p>Clicca il cetriolo</p>
+  </div>
 <div id="main-container">
     <img id="cucumber" src="https://static.wikia.nocookie.net/rickandmorty/images/4/41/Pickle_rick_transparent_edgetrimmed.png" alt="Pickle Rick">
     <div id="message"></div>
@@ -29,6 +33,19 @@
 <footer>
     <p>Created with <i class="fa fa-heart"></i> by <a target="_blank" href="https://marioca.li">Mario</a></p>
 </footer>
-<script src="./script.js"></script>
+    <script src="./script.js"></script>
+    <script>function checkFirstVisit() {
+  if (!localStorage.getItem('reload')) {
+    document.getElementById('overlay').style.display = 'flex';
+    localStorage.setItem('visited', 'true');
+  }
+}
+
+function hideOverlay() {
+  document.getElementById('overlay').style.display = 'none';
+}
+
+document.getElementById('overlay').addEventListener('click', hideOverlay);
+</script>
 </body>
 </html>
