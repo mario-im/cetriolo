@@ -4,18 +4,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cetriolo Magico</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Noto+Sans+JP:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div id="main-container">
     <img id="cucumber" src="https://static.wikia.nocookie.net/rickandmorty/images/4/41/Pickle_rick_transparent_edgetrimmed.png" alt="Pickle Rick">
     <div id="message"></div>
-    <div id="countdown">
-        <div class="countdown-bar">
-            <div class="countdown-fill"></div>
+    <div id="countdown" class="counter hidden">
+        <div class="nums">
+            <span class="in">3</span>
+            <span>2</span>
+            <span>1</span>
         </div>
     </div>
+    <div class="countdown-bar">
+        <div class="countdown-fill"></div>
+    </div>
 </div>
+<footer>
+    <p>Created with <i class="fa fa-heart"></i> by <a target="_blank" href="https://marioca.li">Mario</a></p>
+</footer>
 <script src="script.js"></script>
 </body>
 </html>
