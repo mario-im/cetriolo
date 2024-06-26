@@ -13,7 +13,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
-  
+<link rel="manifest" href="/app.json">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="./style.css">
 </head>
@@ -53,5 +53,15 @@ function hideOverlay() {
 
 document.getElementById('overlay').addEventListener('click', hideOverlay);
 </script>
+<script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then((registration) => {
+          console.log('Service Worker registered with scope:', registration.scope);
+        }).catch((error) => {
+          console.log('Service Worker registration failed:', error);
+        });
+    }
+  </script>
 </body>
 </html>
