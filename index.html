@@ -51,5 +51,41 @@
 
   document.getElementById('overlay').addEventListener('click', hideOverlay);
 </script>
+<script>
+  if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/worker.js')
+      .then((registration) => {
+          console.log('Service Worker registered with scope:', registration.scope);
+      }).catch((error) => {
+          console.error('Service Worker registration failed:', error);
+      });
+  }
+</script>
+<script>
+  let deferredPrompt;
+  const addBtn = document.createElement('button');
+  addBtn.textContent = 'Install App';
+  addBtn.style.display = 'none';
+  document.body.appendChild(addBtn);
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      addBtn.style.display = 'block';
+
+      addBtn.addEventListener('click', () => {
+          addBtn.style.display = 'none';
+          deferredPrompt.prompt();
+          deferredPrompt.userChoice.then((choiceResult) => {
+              if (choiceResult.outcome === 'accepted') {
+                  console.log('User accepted the install prompt');
+              } else {
+                  console.log('User dismissed the install prompt');
+              }
+              deferredPrompt = null;
+          });
+      });
+  });
+</script>
 </body>
 </html>
