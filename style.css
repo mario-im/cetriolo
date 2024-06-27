@@ -232,7 +232,7 @@ opacity: 0.7;
 #version-number {
 position: fixed;
 bottom: 17px;
-right: 10px;
+right: 20px;
 font-size: 12px;
 font-family: ‘Roboto’, sans-serif;
 color: #333;

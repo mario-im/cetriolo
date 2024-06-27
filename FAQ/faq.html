@@ -6,14 +6,66 @@
 <title>FAQ - Cetriolo Magico</title>
 <link rel="stylesheet" href="faq.css">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Noto+Sans+JP:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
   <div class="container">
+    <button id="back-button"><i class="fas fa-arrow-left"></i> Indietro</button>
     <h2>Frequently Asked Questions</h2>
     <div class="accordion" id="faq-container">
       <!-- Le FAQ saranno caricate dinamicamente qui -->
     </div>
   </div>
-  <script src="faq.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const items = document.querySelectorAll(".accordion button");
+
+      function toggleAccordion() {
+        const itemToggle = this.getAttribute('aria-expanded');
+
+        for (let i = 0; i < items.length; i++) {
+          items[i].setAttribute('aria-expanded', 'false');
+        }
+
+        if (itemToggle == 'false') {
+          this.setAttribute('aria-expanded', 'true');
+        }
+      }
+
+      items.forEach(item => item.addEventListener('click', toggleAccordion));
+
+      // Aggiungi la funzione per il bottone "Back"
+      document.getElementById('back-button').addEventListener('click', function() {
+        window.history.back();
+      });
+
+      // Carica le FAQ dal file JSON
+      fetch('faq.json')
+        .then(response => response.json())
+        .then(data => {
+          const faqContainer = document.getElementById('faq-container');
+          data.forEach((faq, index) => {
+            const faqItem = document.createElement('div');
+            faqItem.classList.add('accordion-item');
+
+            const button = document.createElement('button');
+            button.id = `accordion-button-${index + 1}`;
+            button.setAttribute('aria-expanded', 'false');
+            button.innerHTML = `<span class="accordion-title">${faq.title}</span><span class="icon" aria-hidden="true"></span>`;
+
+            const content = document.createElement('div');
+            content.classList.add('accordion-content');
+            content.innerHTML = `<p>${faq.content}</p>`;
+
+            faqItem.appendChild(button);
+            faqItem.appendChild(content);
+            faqContainer.appendChild(faqItem);
+          });
+        })
+        .catch(error => {
+          console.error('Errore nel caricamento delle FAQ:', error);
+        });
+    });
+  </script>
 </body>
 </html>
