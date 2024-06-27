@@ -36,11 +36,6 @@
   <footer>
     <p>Created with <i class="fa fa-heart fa-beat" style="--fa-animation-duration: 1.9s;"></i> by <a target="_blank" href="https://marioca.li">Mario</a></p>
   </footer>
-  <div id="install-prompt" class="install-prompt">
-    <p>Vuoi installare l'app Cetriolo Magico?</p>
-    <button id="install-yes">Sì</button>
-    <button id="install-no">No</button>
-  </div>
   <script src="./script.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
@@ -58,31 +53,7 @@
       console.log('beforeinstallprompt event captured'); // Log per verifica
       e.preventDefault();
       deferredPrompt = e;
-      document.getElementById('install-prompt').style.display = 'block';
-
-      document.getElementById('install-yes').addEventListener('click', () => {
-        document.getElementById('install-prompt').style.display = 'none';
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-            console.log('User accepted the install prompt');
-          } else {
-            console.log('User dismissed the install prompt');
-          }
-          deferredPrompt = null;
-        }).catch((err) => {
-          console.error('UserChoice error:', err);
-        });
-      });
-
-      document.getElementById('install-no').addEventListener('click', () => {
-        document.getElementById('install-prompt').style.display = 'none';
-        deferredPrompt = null;
-      });
-    });
-
-    window.addEventListener('appinstalled', (event) => {
-      console.log('a2hs installed');
+      // Qui non facciamo nulla, lasciando che il prompt di installazione venga gestito da Chrome
     });
 
     function checkFirstVisit() {
