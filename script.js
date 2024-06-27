@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-
+// Ruota il cetriolo al click
 document.getElementById('cucumber').addEventListener('click', () => {
   gsap.to('#cucumber', { duration: 0.5, scale: 1.2, rotation: 360, ease: 'bounce' });
   gsap.to('#cucumber', { duration: 0.5, scale: 1, rotation: 0, ease: 'bounce', delay: 0.5 });
