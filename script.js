@@ -138,4 +138,32 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   }
+
+  let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Previeni il prompt di installazione automatico
+  e.preventDefault();
+  // Salva l'evento in modo che possa essere attivato più tardi
+  deferredPrompt = e;
+
+  // Mostra il tuo bottone/banner di installazione personalizzato
+  document.getElementById('install-banner').style.display = 'block';
+
+  document.getElementById('install-button').addEventListener('click', () => {
+    // Nascondi il banner personalizzato
+    document.getElementById('install-banner').style.display = 'none';
+    // Mostra il prompt di installazione
+    deferredPrompt.prompt();
+    // Attendi la scelta dell'utente
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('L'utente ha accettato di installare l'app');
+      } else {
+        console.log('L'utente ha rifiutato di installare l'app');
+      }
+      deferredPrompt = null;
+    });
+  });
+});
 });
