@@ -156,7 +156,7 @@ document.getElementById('cucumber').addEventListener('click', () => {
     ];
     const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
     
-    gsap.fromTo(message, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 1 });
+    gsap.fromTo(message, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 7 });
     message.textContent = randomPhrase;
-    gsap.to(message, { opacity: 0, y: 20, duration: 1, delay: 2 });
+    gsap.to(message, { opacity: 0, y: 20, duration: 7, delay: 2 });
 });
