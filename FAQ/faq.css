@@ -22,9 +22,9 @@ body, html {
 }
 
 #back-button {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
+  position: fixed;
+  top: 2rem;
+  /*left: 1rem; */
   background-color: #4CAF50; /* Verde cetriolo */
   color: #fff;
   border: none;
