@@ -6,11 +6,49 @@ document.addEventListener('DOMContentLoaded', function () {
   const nums = document.querySelectorAll('.nums span');
   const countdownBar = document.querySelector('.countdown-bar');
   const countdownFill = document.querySelector('.countdown-fill');
+  const clickCounter = document.getElementById('click-counter');
 
   let phrases = [];
   let originalWidth = cucumber.offsetWidth;
   let originalHeight = cucumber.offsetHeight;
   let isClickable = true;
+  let clickCount = 0;
+
+  // Funzione per ottenere la data corrente in formato YYYY-MM-DD
+  function getCurrentDate() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+  // Funzione per aggiornare il contatore di clic
+  function updateClickCounter() {
+    clickCounter.textContent = `I cetrioli di oggi sono: ${clickCount}`;
+    clickCounter.style.display = 'block';
+    clickCounter.style.animation = 'slideDown 0.5s forwards';
+
+    setTimeout(() => {
+      clickCounter.style.animation = 'slideUp 0.5s forwards';
+      setTimeout(() => {
+        clickCounter.style.display = 'none';
+      }, 500);
+    }, 5000);
+  }
+
+  // Controlla la data salvata in localStorage
+  const savedDate = localStorage.getItem('cucumberDate');
+  const currentDate = getCurrentDate();
+
+  // Se la data è diversa da quella corrente, reimposta il conteggio
+  if (savedDate !== currentDate) {
+    localStorage.setItem('cucumberDate', currentDate);
+    localStorage.setItem('cucumberCount', 0);
+  } else {
+    // Altrimenti, recupera il conteggio dei clic salvato
+    clickCount = parseInt(localStorage.getItem('cucumberCount'), 10) || 0;
+  }
 
   // Nascondi la barra al caricamento della pagina
   countdownBar.style.display = 'none';
@@ -31,6 +69,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     isClickable = false;
+    clickCount++;
+    localStorage.setItem('cucumberCount', clickCount);
+    updateClickCounter();
 
     // Riduci la dimensione del cetriolo
     const goldenRatio = 1.618;

@@ -8,6 +8,7 @@ body, html {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    position: relative;
 }
 
 #main-container {
@@ -173,9 +174,6 @@ footer a {
     text-decoration: none;
 }
 
-
-
-
 #overlay {
   position: fixed;
   top: 0;
@@ -200,4 +198,41 @@ footer a {
   font-size: 20px;
   color: #fff;
   font-family: 'Roboto', sans-serif;
+}
+
+#click-counter {
+  position: fixed;
+  top: 10px;
+  right: center;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  z-index: 10000;
+  display: none; /* Inizialmente nascosto */
+  animation: slideDown 0.5s forwards;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform:translateY(0);
+opacity: 1;
+}
+}
+
+@keyframes slideUp {
+from {
+transform: translateY(0);
+opacity: 1;
+}
+to {
+transform: translateY(-100%);
+opacity: 0;
+}
 }
