@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
       setTimeout(() => {
         clickCounter.style.display = 'none';
       }, 500);
-    }, 5000);
+    }, 4000); // 4000 millisecondi 4secondi
   }
 
   // Controlla la data salvata in localStorage
