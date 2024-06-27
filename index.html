@@ -11,6 +11,15 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="./style.css">
 <link rel="manifest" href="/manifest.json">
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "fe62a5c4-e3b8-4450-8b80-d90ac300d90c",
+    });
+  });
+</script>
 </head>
 <body onload="checkFirstVisit()">
   <div id="overlay">
