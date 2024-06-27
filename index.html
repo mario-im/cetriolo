@@ -37,31 +37,15 @@
 </footer>
 <script src="./script.js"></script>
 <script>
-  function checkFirstVisit() {
-    if (!localStorage.getItem('reload')) {
-      document.getElementById('overlay').style.display = 'flex';
-      localStorage.setItem('visited', 'true');
-    }
-  }
-
-  function hideOverlay() {
-    document.getElementById('overlay').style.display = 'none';
-    document.getElementById('cucumber').click(); // Simula il click del cetriolo
-  }
-
-  document.getElementById('overlay').addEventListener('click', hideOverlay);
-</script>
-<script>
   if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./worker.js')
+      navigator.serviceWorker.register('/worker.js')
       .then((registration) => {
           console.log('Service Worker registered with scope:', registration.scope);
       }).catch((error) => {
           console.error('Service Worker registration failed:', error);
       });
   }
-</script>
-<script>
+
   let deferredPrompt;
   const addBtn = document.createElement('button');
   addBtn.textContent = 'Install App';
@@ -69,6 +53,7 @@
   document.body.appendChild(addBtn);
 
   window.addEventListener('beforeinstallprompt', (e) => {
+      console.log('beforeinstallprompt event captured'); // Log per verifica
       e.preventDefault();
       deferredPrompt = e;
       addBtn.style.display = 'block';
@@ -86,6 +71,20 @@
           });
       });
   });
+
+  function checkFirstVisit() {
+      if (!localStorage.getItem('reload')) {
+          document.getElementById('overlay').style.display = 'flex';
+          localStorage.setItem('visited', 'true');
+      }
+  }
+
+  function hideOverlay() {
+      document.getElementById('overlay').style.display = 'none';
+      document.getElementById('cucumber').click(); // Simula il click del cetriolo
+  }
+
+  document.getElementById('overlay').addEventListener('click', hideOverlay);
 </script>
 </body>
 </html>
