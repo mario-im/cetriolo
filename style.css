@@ -245,26 +245,3 @@ z-index: 10000;
     color: #4CAF50; /* verde cetriolo*/
     text-decoration: none;
 }
-
-/*thema dark*/
-
-body.dark-mode {
-    background-color: #121212;
-    color: #ffffff;
-  }
-  
-  button#theme-toggle {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    padding: 10px;
-    background-color: #ffffff;
-    color: #000000;
-    border: none;
-    cursor: pointer;
-  }
-  
-  body.dark-mode button#theme-toggle {
-    background-color: #333333;
-    color: #ffffff;
-  }
