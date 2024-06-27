@@ -10,14 +10,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="./style.css">
-
-<link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Aggiunta del favicon -->
-<link rel="manifest" href="/manifest.json">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Cetriolo Magico">
-<link rel="apple-touch-icon" href="favicon-192x192.png">
-
 </head>
   <body onload="checkFirstVisit()">
   <div id="overlay">
@@ -40,19 +32,6 @@
 </div>
 <div id="click-counter">I cetrioli di oggi sono: 0</div>
 <div id="version-number">Version <a target="_self" href="./FAQ/faq.html">1.0.2</a></div>
-
-
-<!-- Banner di Installazione -->
-<div id="install-banner" style="display: none; position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); background-color: #4CAF50; color: white; padding: 10px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);">
-  <span>Installa la nostra app!</span>
-  <button id="install-button" style="background-color: #388E3C; color: white; border: none; padding: 5px 10px; margin-left: 10px; border-radius: 3px; cursor: pointer;">Installa</button>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const faqContainer = document.getElementById('faq-container');
-
-
 <footer>
     <p>Created with <i class="fa fa-heart fa-beat" style="--fa-animation-duration: 1.9s;"></i> by <a target="_blank" href="https://marioca.li">Mario</a></p>
 </footer>
@@ -71,16 +50,6 @@
   }
 
   document.getElementById('overlay').addEventListener('click', hideOverlay);
-</script>
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./worker.js')
-      .then((registration) => {
-        console.log('Service Worker registered with scope:', registration.scope);
-      }).catch((error) => {
-        console.log('Service Worker registration failed:', error);
-      });
-  }
 </script>
 </body>
 </html>
