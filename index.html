@@ -11,80 +11,80 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="./style.css">
 </head>
-  <body onload="checkFirstVisit()">
+<body onload="checkFirstVisit()">
   <div id="overlay">
     <i id="click-icon" class="fas fa-hand-pointer fa-beat"></i>
     <p>Clicca il cetriolo</p>
   </div>
-<div id="main-container">
+  <div id="main-container">
     <img id="cucumber" src="https://static.wikia.nocookie.net/rickandmorty/images/4/41/Pickle_rick_transparent_edgetrimmed.png" alt="Pickle Rick">
     <div id="message"></div>
     <div id="countdown" class="counter hidden">
-        <div class="nums">
-            <span class="in">3</span>
-            <span>2</span>
-            <span>1</span>
-        </div>
+      <div class="nums">
+        <span class="in">3</span>
+        <span>2</span>
+        <span>1</span>
+      </div>
     </div>
     <div class="countdown-bar">
-        <div class="countdown-fill"></div>
+      <div class="countdown-fill"></div>
     </div>
-</div>
-<div id="click-counter">I cetrioli di oggi sono: 0</div>
-<div id="version-number">Version <a target="_self" href="./FAQ/faq.html">1.0.2</a></div>
-<footer>
+  </div>
+  <div id="click-counter">I cetrioli di oggi sono: 0</div>
+  <div id="version-number">Version <a target="_self" href="./FAQ/faq.html">1.0.2</a></div>
+  <footer>
     <p>Created with <i class="fa fa-heart fa-beat" style="--fa-animation-duration: 1.9s;"></i> by <a target="_blank" href="https://marioca.li">Mario</a></p>
-</footer>
-<script src="./script.js"></script>
-<script>
-  if ('serviceWorker' in navigator) {
+  </footer>
+  <script src="./script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/worker.js')
-      .then((registration) => {
+        .then((registration) => {
           console.log('Service Worker registered with scope:', registration.scope);
-      }).catch((error) => {
+        }).catch((error) => {
           console.error('Service Worker registration failed:', error);
-      });
-  }
+        });
+    }
 
-  let deferredPrompt;
-  const addBtn = document.createElement('button');
-  addBtn.textContent = 'Install App';
-  addBtn.style.display = 'none';
-  document.body.appendChild(addBtn);
+    let deferredPrompt;
+    const addBtn = document.createElement('button');
+    addBtn.textContent = 'Install App';
+    addBtn.style.display = 'none';
+    document.body.appendChild(addBtn);
 
-  window.addEventListener('beforeinstallprompt', (e) => {
+    window.addEventListener('beforeinstallprompt', (e) => {
       console.log('beforeinstallprompt event captured'); // Log per verifica
       e.preventDefault();
       deferredPrompt = e;
       addBtn.style.display = 'block';
 
       addBtn.addEventListener('click', () => {
-          addBtn.style.display = 'none';
-          deferredPrompt.prompt();
-          deferredPrompt.userChoice.then((choiceResult) => {
-              if (choiceResult.outcome === 'accepted') {
-                  console.log('User accepted the install prompt');
-              } else {
-                  console.log('User dismissed the install prompt');
-              }
-              deferredPrompt = null;
-          });
+        addBtn.style.display = 'none';
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the install prompt');
+          } else {
+            console.log('User dismissed the install prompt');
+          }
+          deferredPrompt = null;
+        });
       });
-  });
+    });
 
-  function checkFirstVisit() {
+    function checkFirstVisit() {
       if (!localStorage.getItem('reload')) {
-          document.getElementById('overlay').style.display = 'flex';
-          localStorage.setItem('visited', 'true');
+        document.getElementById('overlay').style.display = 'flex';
+        localStorage.setItem('visited', 'true');
       }
-  }
+    }
 
-  function hideOverlay() {
+    function hideOverlay() {
       document.getElementById('overlay').style.display = 'none';
       document.getElementById('cucumber').click(); // Simula il click del cetriolo
-  }
+    }
 
-  document.getElementById('overlay').addEventListener('click', hideOverlay);
-</script>
+    document.getElementById('overlay').addEventListener('click', hideOverlay);
+  </script>
 </body>
 </html>
