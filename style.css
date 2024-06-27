@@ -203,7 +203,7 @@ footer a {
 #click-counter {
   position: fixed;
   top: 10px;
-  right: center;
+  right: 10px;
   background-color: #fff;
   padding: 10px;
   border-radius: 5px;
@@ -215,24 +215,32 @@ footer a {
   animation: slideDown 0.5s forwards;
 }
 
-@keyframes slideDown {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform:translateY(0);
-opacity: 1;
-}
+#bottom-right-counter {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+background-color: #fff;
+padding: 5px;
+border-radius: 3px;
+box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+font-family: ‘Roboto’, sans-serif;
+font-size: 12px;
+z-index: 10000;
+opacity: 0.7;
 }
 
-@keyframes slideUp {
-from {
-transform: translateY(0);
-opacity: 1;
+#version-number {
+position: fixed;
+bottom: 17px;
+right: 10px;
+font-size: 12px;
+font-family: ‘Roboto’, sans-serif;
+color: #333;
+opacity: 0.3;
+z-index: 10000;
 }
-to {
-transform: translateY(-100%);
-opacity: 0;
-}
+#version-number a {
+    /*color: #3C97BF;*/
+    color: #4CAF50; /* verde cetriolo*/
+    text-decoration: none;
 }
