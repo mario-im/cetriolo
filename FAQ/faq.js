@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.history.back();
   });
 
-  fetch('https://raw.githubusercontent.com/mario-im/cetriolo/main/FAQ/faq.json')
+  fetch('faq.json')
     .then(response => response.json())
     .then(data => {
       data.forEach((faq, index) => {
