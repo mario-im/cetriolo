@@ -145,18 +145,3 @@ document.getElementById('cucumber').addEventListener('click', () => {
   gsap.to('#cucumber', { duration: 0.5, scale: 1.2, rotation: 360, ease: 'bounce' });
   gsap.to('#cucumber', { duration: 0.5, scale: 1, rotation: 0, ease: 'bounce', delay: 0.5 });
 });
-
-const message = document.getElementById('message');
-
-document.getElementById('cucumber').addEventListener('click', () => {
-    const phrases = [
-        "Se qualcosa può andare storto, di solito lo fa nel peggior modo possibile.",
-        "Il computer è sicuro, solo se è spento.",
-        // ... altre frasi
-    ];
-    const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
-    
-    gsap.fromTo(message, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 7 });
-    message.textContent = randomPhrase;
-    gsap.to(message, { opacity: 0, y: 20, duration: 7, delay: 2 });
-});
